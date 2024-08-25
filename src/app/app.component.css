@@ -1,0 +1,27 @@
+.seat-layout {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* Ensure 7 seats per row */
+  gap: 10px; /* Add some spacing between seats */
+  max-width: 350px; /* Adjust width to fit the number of seats */
+  margin: 20px 0;
+}
+
+.seat {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.available {
+  background-color: #a8e6a3;
+}
+
+.booked {
+  background-color: #e69f9f;
+}

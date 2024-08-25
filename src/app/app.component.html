@@ -1,0 +1,41 @@
+<div class="seat-booking-form">
+  <label for="seatRequest">Number of Seats to Book:</label>
+  <input
+    type="number"
+    id="seatRequest"
+    #seatRequest
+    (input)="validateSeatRequest(seatRequest.value)"
+  />
+  <button
+    [disabled]="seatRequest.value > 7 || seatRequest.value < 1"
+    (click)="bookSeats(seatRequest.value)"
+  >
+    Book Seats
+  </button>
+  <div *ngIf="seatRequest.value > 7" class="error-message">
+    You can only book up to 7 seats at a time.
+  </div>
+  <div
+    *ngIf="seatRequest.value < 1 && seatRequest.value !== ''"
+    class="error-message"
+  >
+    Please enter a valid number of seats (1-7).
+  </div>
+</div>
+
+<div class="booked-seats" *ngIf="currentBookedSeats.length > 0">
+  <h3>Seats booked for you:</h3>
+  <p *ngFor="let seat of currentBookedSeats">
+    Row: {{ seat.row }}, Seat Number: {{ seat.number }}
+  </p>
+</div>
+
+<div class="seat-layout">
+  <div
+    *ngFor="let seat of seats"
+    [ngClass]="{ booked: seat.isBooked, available: !seat.isBooked }"
+    class="seat"
+  >
+    Row {{ seat.row }}, Seat {{ seat.number }}
+  </div>
+</div>
